@@ -29,6 +29,13 @@ class AppTheme {
     foregroundColor: _green,
   );
 
+  static const _tabBarTheme = TabBarTheme(
+    indicatorColor: _green,
+    labelColor: _green,
+    unselectedLabelColor: Colors.white,
+    overlayColor: WidgetStatePropertyAll(_darkGrey),
+  );
+
   static ThemeData light = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
@@ -42,6 +49,7 @@ class AppTheme {
     ),
     navigationBarTheme: _navigationBarTheme,
     appBarTheme: _appBarTheme,
+    tabBarTheme: _tabBarTheme,
   );
 
   static ThemeData dark = ThemeData(
@@ -57,5 +65,6 @@ class AppTheme {
     ),
     navigationBarTheme: _navigationBarTheme,
     appBarTheme: _appBarTheme,
+    tabBarTheme: _tabBarTheme,
   );
 }

@@ -8,8 +8,14 @@ class MovieRepositoryImpl implements MovieRepository {
   MovieRepositoryImpl({required Api api}) : _api = api;
 
   @override
-  Future<List<Movie>> getPopularMovies({int page = 0}) async {
+  Future<List<Movie>> getPopularMovies({int page = 1}) async {
     final movies = await _api.loadPopularMovies(page: page);
+    return movies;
+  }
+
+  @override
+  Future<List<Movie>> getTopRatedMovies({int page = 1}) async {
+    final movies = await _api.loadTopRatedMovies(page: page);
     return movies;
   }
 }
