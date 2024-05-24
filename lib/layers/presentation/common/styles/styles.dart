@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static const Color _green = Color.fromRGBO(1, 210, 119, 1);
   static const Color _darkGrey = Color.fromRGBO(10, 28, 36, 1);
+  static const Color _lightGray = Color.fromRGBO(250, 250, 250, 1);
 
   static final _navigationBarTheme = NavigationBarThemeData(
     backgroundColor: _darkGrey,
@@ -50,6 +51,7 @@ class AppTheme {
     navigationBarTheme: _navigationBarTheme,
     appBarTheme: _appBarTheme,
     tabBarTheme: _tabBarTheme,
+    cardTheme: const CardTheme(color: _lightGray),
   );
 
   static ThemeData dark = ThemeData(
@@ -66,5 +68,6 @@ class AppTheme {
     navigationBarTheme: _navigationBarTheme,
     appBarTheme: _appBarTheme,
     tabBarTheme: _tabBarTheme,
+    cardTheme: const CardTheme(color: _darkGrey),
   );
 }

@@ -18,7 +18,7 @@ class Person with EquatableMixin {
   int gender;
   String? knownForDepartment;
   String? profileUrl;
-  List<Movie> knownFor;
+  List<Movie>? knownFor;
 
   @override
   List<Object?> get props => [

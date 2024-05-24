@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:movies_cds/layers/domain/model/movie.dart';
 import 'package:movies_cds/layers/presentation/common/page_status.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/popular/popular_movies_view_model.dart';
 import 'package:movies_cds/layers/presentation/common/widget/list_loading_item.dart';
@@ -46,7 +48,11 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage>
               if (index >= list.length) {
                 return !hasEnded ? const ListLoadingItem() : const SizedBox();
               }
-              return MovieListItem(movie: list[index]);
+              final movie = list[index];
+              return MovieListItem(
+                movie: movie,
+                onTap: () => _goToMovieDetails(movie),
+              );
             },
           );
         }
@@ -66,6 +72,10 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage>
     if (_isBottom) {
       ref.read(popularMoviesViewModelProvider.notifier).fetchNextPage();
     }
+  }
+
+  void _goToMovieDetails(Movie movie) {
+    context.pushNamed("movie_detail", extra: movie);
   }
 
   bool get _isBottom {

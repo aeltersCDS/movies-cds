@@ -71,9 +71,11 @@ class PersonListItem extends StatelessWidget {
                               text: "Known for: ",
                               style: TextStyle(fontWeight: FontWeight.bold)),
                           TextSpan(
-                              text: person.knownFor
-                                  .map((movie) => movie.title)
-                                  .join(","))
+                            text: person.knownFor
+                                    ?.map((movie) => movie.title)
+                                    .join(",") ??
+                                "",
+                          )
                         ],
                       ),
                       maxLines: constraints.maxHeight ~/ 16,

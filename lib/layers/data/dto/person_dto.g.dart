@@ -13,8 +13,8 @@ PersonDto _$PersonDtoFromJson(Map<String, dynamic> json) => PersonDto(
       gender: (json['gender'] as num).toInt(),
       knownForDepartment: json['known_for_department'] as String?,
       profilePath: json['profile_path'] as String?,
-      knownFor: (json['known_for'] as List<dynamic>)
-          .map((e) => MovieDto.fromJson(e as Map<String, dynamic>))
+      knownFor: (json['known_for'] as List<dynamic>?)
+          ?.map((e) => MovieDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -34,6 +34,6 @@ Map<String, dynamic> _$PersonDtoToJson(PersonDto instance) {
 
   writeNotNull('known_for_department', instance.knownForDepartment);
   writeNotNull('profile_path', instance.profilePath);
-  val['known_for'] = instance.knownFor.map((e) => e.toJson()).toList();
+  writeNotNull('known_for', instance.knownFor?.map((e) => e.toJson()).toList());
   return val;
 }

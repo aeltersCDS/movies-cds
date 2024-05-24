@@ -1,5 +1,6 @@
 import 'package:movies_cds/layers/data/source/remote/api.dart';
 import 'package:movies_cds/layers/domain/model/movie.dart';
+import 'package:movies_cds/layers/domain/model/person.dart';
 import 'package:movies_cds/layers/domain/repository/movie_repository.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
@@ -17,5 +18,11 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<List<Movie>> getTopRatedMovies({int page = 1}) async {
     final movies = await _api.loadTopRatedMovies(page: page);
     return movies.map((movie) => movie.toDomain()).toList();
+  }
+
+  @override
+  Future<List<Person>> getMovieCast(int movieId) async {
+    final crew = await _api.loadMovieCast(movieId);
+    return crew.map((member) => member.toDomain()).toList();
   }
 }
