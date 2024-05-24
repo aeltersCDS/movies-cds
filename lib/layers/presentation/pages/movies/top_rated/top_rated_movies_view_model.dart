@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_cds/layers/presentation/common/page_status.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/common/movies_page_state.dart';
 import 'package:movies_cds/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -13,20 +14,20 @@ class TopRatedMoviesViewModel extends _$TopRatedMoviesViewModel {
   }
 
   Future<void> fetchNextPage() async {
-    if (state.hasReachedEnd || state.status == MoviesPageStatus.loading) return;
-    state = state.copyWith(status: MoviesPageStatus.loading);
+    if (state.hasReachedEnd || state.status == PageStatus.loading) return;
+    state = state.copyWith(status: PageStatus.loading);
     try {
       final page =
           await ref.read(getTopRatedMoviesProvider)(page: state.currentPage);
       state = state.copyWith(
-        status: MoviesPageStatus.success,
+        status: PageStatus.success,
         currentPage: state.currentPage + 1,
         movies: List.of(state.movies)..addAll(page),
         hasReachedEnd: page.isEmpty,
       );
     } catch (exc) {
       debugPrint(exc.toString());
-      state = state.copyWith(status: MoviesPageStatus.failure);
+      state = state.copyWith(status: PageStatus.failure);
     }
   }
 }

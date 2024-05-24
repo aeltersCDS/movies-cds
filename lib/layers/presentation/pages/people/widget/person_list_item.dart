@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:movies_cds/layers/domain/model/movie.dart';
+import 'package:movies_cds/layers/domain/model/person.dart';
 import 'package:movies_cds/layers/presentation/common/corner_clipper.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class MovieListItem extends StatelessWidget {
-  MovieListItem({super.key, required this.movie});
-  final Movie movie;
-  final DateFormat _format = DateFormat("MMMM d, yyyy");
+class PersonListItem extends StatelessWidget {
+  const PersonListItem({super.key, required this.person});
+  final Person person;
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +21,21 @@ class MovieListItem extends StatelessWidget {
               roundedCorners: {Corner.topLeft, Corner.bottomLeft},
             ),
             child: Builder(builder: (context) {
-              final prosterUrl = movie.posterUrl;
-              if (prosterUrl != null) {
+              final profileUrl = person.profileUrl;
+              if (profileUrl != null) {
                 return FadeInImage.memoryNetwork(
-                  image: prosterUrl,
+                  image: profileUrl,
                   placeholder: kTransparentImage,
-                  height: 200,
-                  width: 133.33,
-                  fit: BoxFit.fill,
+                  height: 96,
+                  width: 96,
+                  fit: BoxFit.cover,
                 );
               } else {
                 return Container(
                   color: Theme.of(context).colorScheme.primary.withAlpha(100),
                   child: const SizedBox(
-                    height: 200,
-                    width: 133.33,
+                    width: 96,
+                    height: 96,
                   ),
                 );
               }
@@ -45,30 +43,39 @@ class MovieListItem extends StatelessWidget {
           ),
           Expanded(
               child: SizedBox(
-            height: 200,
+            height: 96,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    movie.title,
+                    person.name,
                     style: Theme.of(context)
                         .textTheme
                         .titleSmall
                         ?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    _format.format(movie.releaseDate),
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 8),
                   Flexible(
                       child: LayoutBuilder(
-                    builder: (context, constraints) => Text(
-                      movie.overview,
-                      style: Theme.of(context).textTheme.bodySmall,
+                    builder: (context, constraints) => RichText(
+                      text: TextSpan(
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurface
+                                .withAlpha(200)),
+                        children: [
+                          const TextSpan(
+                              text: "Known for: ",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(
+                              text: person.knownFor
+                                  .map((movie) => movie.title)
+                                  .join(","))
+                        ],
+                      ),
                       maxLines: constraints.maxHeight ~/ 16,
                       overflow: TextOverflow.ellipsis,
                     ),

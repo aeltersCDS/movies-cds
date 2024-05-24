@@ -29,6 +29,9 @@ class _MoviesPageState extends State<MoviesPage>
   Widget build(BuildContext context) {
     return Column(
       children: [
+        AppBar(
+          title: const Text("Movies"),
+        ),
         Container(
           color: Theme.of(context).colorScheme.primary,
           child: TabBar(

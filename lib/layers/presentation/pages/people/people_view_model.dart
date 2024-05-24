@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:movies_cds/layers/presentation/common/page_status.dart';
-import 'package:movies_cds/layers/presentation/pages/movies/common/movies_page_state.dart';
+import 'package:movies_cds/layers/presentation/pages/people/people_page_state.dart';
 import 'package:movies_cds/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'popular_movies_view_model.g.dart';
+part 'people_view_model.g.dart';
 
 @riverpod
-class PopularMoviesViewModel extends _$PopularMoviesViewModel {
+class PeopleViewModel extends _$PeopleViewModel {
   @override
-  MoviesPageState build() {
-    return const MoviesPageState();
+  PeoplePageState build() {
+    return const PeoplePageState();
   }
 
   Future<void> fetchNextPage() async {
@@ -18,15 +18,15 @@ class PopularMoviesViewModel extends _$PopularMoviesViewModel {
     state = state.copyWith(status: PageStatus.loading);
     try {
       final page =
-          await ref.read(getPopularMoviesProvider)(page: state.currentPage);
+          await ref.read(getTrendingPeopleProvider)(page: state.currentPage);
       state = state.copyWith(
         status: PageStatus.success,
         currentPage: state.currentPage + 1,
-        movies: List.of(state.movies)..addAll(page),
+        people: List.of(state.people)..addAll(page),
         hasReachedEnd: page.isEmpty,
       );
-    } catch (exc) {
-      debugPrint("Error");
+    } catch (exc, stack) {
+      Logger().e(exc, stackTrace: stack);
       state = state.copyWith(status: PageStatus.failure);
     }
   }

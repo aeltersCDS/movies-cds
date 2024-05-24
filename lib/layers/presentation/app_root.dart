@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/movies_page.dart';
-import 'package:movies_cds/layers/presentation/pages/people/view/people_page.dart';
+import 'package:movies_cds/layers/presentation/pages/people/people_page.dart';
 import 'package:movies_cds/layers/presentation/pages/settings/view/settings_page.dart';
 
 class AppRoot extends StatefulWidget {
@@ -16,9 +16,6 @@ class _AppRootState extends State<AppRoot> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Movies"),
-      ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {

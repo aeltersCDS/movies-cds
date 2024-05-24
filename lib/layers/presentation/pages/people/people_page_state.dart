@@ -1,29 +1,29 @@
 import 'package:equatable/equatable.dart';
-import 'package:movies_cds/layers/domain/model/movie.dart';
+import 'package:movies_cds/layers/domain/model/person.dart';
 import 'package:movies_cds/layers/presentation/common/page_status.dart';
 
-class MoviesPageState extends Equatable {
-  const MoviesPageState({
+class PeoplePageState extends Equatable {
+  const PeoplePageState({
     this.status = PageStatus.initial,
-    this.movies = const [],
+    this.people = const [],
     this.hasReachedEnd = false,
     this.currentPage = 1,
   });
 
   final PageStatus status;
-  final List<Movie> movies;
+  final List<Person> people;
   final bool hasReachedEnd;
   final int currentPage;
 
-  MoviesPageState copyWith({
+  PeoplePageState copyWith({
     PageStatus? status,
-    List<Movie>? movies,
+    List<Person>? people,
     bool? hasReachedEnd,
     int? currentPage,
   }) {
-    return MoviesPageState(
+    return PeoplePageState(
       status: status ?? this.status,
-      movies: movies ?? this.movies,
+      people: people ?? this.people,
       hasReachedEnd: hasReachedEnd ?? this.hasReachedEnd,
       currentPage: currentPage ?? this.currentPage,
     );
@@ -32,7 +32,7 @@ class MoviesPageState extends Equatable {
   @override
   List<Object> get props => [
         status,
-        movies,
+        people,
         hasReachedEnd,
         currentPage,
       ];

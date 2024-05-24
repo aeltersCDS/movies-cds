@@ -21,6 +21,21 @@ final movieRepositoryProvider = Provider<MovieRepository>.internal(
 );
 
 typedef MovieRepositoryRef = ProviderRef<MovieRepository>;
+String _$personRepositoryHash() => r'f91294ef54292501b0fb8c7e18a2c7135d53fb8f';
+
+/// See also [personRepository].
+@ProviderFor(personRepository)
+final personRepositoryProvider = Provider<PersonRepository>.internal(
+  personRepository,
+  name: r'personRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$personRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef PersonRepositoryRef = ProviderRef<PersonRepository>;
 String _$getPopularMoviesHash() => r'bb310a38b704ff9073a6af2c215703012b888388';
 
 /// See also [getPopularMovies].
@@ -51,6 +66,21 @@ final getTopRatedMoviesProvider = Provider<GetTopRatedMovies>.internal(
 );
 
 typedef GetTopRatedMoviesRef = ProviderRef<GetTopRatedMovies>;
+String _$getTrendingPeopleHash() => r'8a583b8a6790f02b6026e369bdc485cd7d25178d';
+
+/// See also [getTrendingPeople].
+@ProviderFor(getTrendingPeople)
+final getTrendingPeopleProvider = Provider<GetTrendingPeople>.internal(
+  getTrendingPeople,
+  name: r'getTrendingPeopleProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getTrendingPeopleHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetTrendingPeopleRef = ProviderRef<GetTrendingPeople>;
 String _$moviesRestInterceptorHash() =>
     r'da0ab87d361d44be1310a570bafa1883f727f1dd';
 

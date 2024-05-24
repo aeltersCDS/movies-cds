@@ -10,12 +10,12 @@ class MovieRepositoryImpl implements MovieRepository {
   @override
   Future<List<Movie>> getPopularMovies({int page = 1}) async {
     final movies = await _api.loadPopularMovies(page: page);
-    return movies;
+    return movies.map((movie) => movie.toDomain()).toList();
   }
 
   @override
   Future<List<Movie>> getTopRatedMovies({int page = 1}) async {
     final movies = await _api.loadTopRatedMovies(page: page);
-    return movies;
+    return movies.map((movie) => movie.toDomain()).toList();
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movies_cds/layers/presentation/pages/movies/common/movies_page_state.dart';
+import 'package:movies_cds/layers/presentation/common/page_status.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/popular/popular_movies_view_model.dart';
-import 'package:movies_cds/layers/presentation/pages/movies/common/widget/list_loading_item.dart';
+import 'package:movies_cds/layers/presentation/common/widget/list_loading_item.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/common/widget/movie_list_item.dart';
 
 class PopularMoviesPage extends ConsumerStatefulWidget {
@@ -34,7 +34,7 @@ class _PopularMoviesPageState extends ConsumerState<PopularMoviesPage>
     final hasEnded = state.hasReachedEnd;
     return Builder(
       builder: (context) {
-        if (status == MoviesPageStatus.initial) {
+        if (status == PageStatus.initial || list.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         } else {
           return ListView.separated(
