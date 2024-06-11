@@ -6,6 +6,7 @@ import 'package:movies_cds/layers/data/source/remote/api.dart';
 import 'package:movies_cds/layers/data/source/remote/request_interceptor.dart';
 import 'package:movies_cds/layers/domain/repository/movie_repository.dart';
 import 'package:movies_cds/layers/domain/repository/person_repository.dart';
+import 'package:movies_cds/layers/domain/usecase/get_movie_credits.dart';
 import 'package:movies_cds/layers/domain/usecase/get_popular_movies.dart';
 import 'package:movies_cds/layers/domain/usecase/get_top_rated_movies.dart';
 import 'package:movies_cds/layers/domain/usecase/get_trending_people.dart';
@@ -21,6 +22,8 @@ part 'providers.g.dart';
 // Domain
 // -----------------------------------------------------------------------------
 
+// Repositories
+
 @Riverpod(keepAlive: true)
 MovieRepository movieRepository(MovieRepositoryRef ref) => MovieRepositoryImpl(
       api: ref.read(apiProvider),
@@ -32,6 +35,8 @@ PersonRepository personRepository(PersonRepositoryRef ref) =>
       api: ref.read(apiProvider),
     );
 
+// Usecases
+
 @Riverpod(keepAlive: true)
 GetPopularMovies getPopularMovies(GetPopularMoviesRef ref) => GetPopularMovies(
       repository: ref.read(movieRepositoryProvider),
@@ -40,6 +45,11 @@ GetPopularMovies getPopularMovies(GetPopularMoviesRef ref) => GetPopularMovies(
 @Riverpod(keepAlive: true)
 GetTopRatedMovies getTopRatedMovies(GetTopRatedMoviesRef ref) =>
     GetTopRatedMovies(
+      repository: ref.read(movieRepositoryProvider),
+    );
+
+@Riverpod(keepAlive: true)
+GetMovieCredits getMovieCredits(GetMovieCreditsRef ref) => GetMovieCredits(
       repository: ref.read(movieRepositoryProvider),
     );
 

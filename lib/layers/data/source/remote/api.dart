@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:dio/dio.dart';
+import 'package:movies_cds/layers/data/dto/movie_credits_dto.dart';
 import 'package:movies_cds/layers/data/dto/movie_dto.dart';
 import 'package:movies_cds/layers/data/dto/person_dto.dart';
 
@@ -8,7 +9,7 @@ abstract class Api {
   Future<List<MovieDto>> loadPopularMovies({int page = 0});
   Future<List<MovieDto>> loadTopRatedMovies({int page = 0});
   Future<List<PersonDto>> loadTrendingPeople({int page = 0});
-  Future<List<PersonDto>> loadMovieCast(int movieId);
+  Future<MovieCreditsDto> loadMovieCredits(int movieId);
   static const imagesBaseUrl = "https://image.tmdb.org/t/p/original/";
 }
 
@@ -102,14 +103,12 @@ class ApiImpl implements Api {
   }
 
   @override
-  Future<List<PersonDto>> loadMovieCast(int movieId) async {
+  Future<MovieCreditsDto> loadMovieCredits(int movieId) async {
     try {
       final Response<Map<String, dynamic>> response =
           await _dio.get('movie/$movieId/credits');
-      final list = (response.data!['cast'] as List<dynamic>)
-          .map((e) => PersonDto.fromJson(e))
-          .toList();
-      return list;
+      final credits = MovieCreditsDto.fromJson(response.data!);
+      return credits;
     } on DioException catch (e) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx and is also not 304.
@@ -117,15 +116,11 @@ class ApiImpl implements Api {
         print(e.response?.data);
         print(e.response?.headers);
         print(e.response?.requestOptions);
-
-        //  API responds with 404 when reached the end
-        if (e.response?.statusCode == 404) return [];
       } else {
         // Something happened in setting up or sending the request that triggered an Error
         print(e);
       }
+      rethrow;
     }
-
-    return [];
   }
 }

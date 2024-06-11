@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:movies_cds/layers/domain/model/movie.dart';
 import 'package:movies_cds/layers/presentation/app_root.dart';
 import 'package:movies_cds/layers/presentation/common/styles/styles.dart';
+import 'package:movies_cds/layers/presentation/pages/movie_cast_crew/movie_cast_crew_page.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_detail/movie_detail_page.dart';
 
 void main() {
@@ -25,6 +26,14 @@ final _router = GoRouter(
       builder: (context, state) {
         final movie = state.extra as Movie;
         return MovieDetailPage(movie: movie);
+      },
+    ),
+    GoRoute(
+      name: 'movie_cast_crew',
+      path: '/movie_cast_crew',
+      builder: (context, state) {
+        final data = state.extra as MovieCastCrewData;
+        return MovieCastCrewPage(data: data);
       },
     ),
   ],

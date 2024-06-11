@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movies_cds/layers/domain/model/person.dart';
+import 'package:movies_cds/layers/domain/model/cast_member.dart';
 import 'package:movies_cds/layers/presentation/common/corner_clipper.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class CastMemberListItem extends StatelessWidget {
-  const CastMemberListItem({super.key, required this.person});
-  final Person person;
+class CastMemberHorizontalListItem extends StatelessWidget {
+  const CastMemberHorizontalListItem({super.key, required this.member});
+  final CastMember member;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class CastMemberListItem extends StatelessWidget {
                 },
               ),
               child: Builder(builder: (context) {
-                final profileUrl = person.profileUrl;
+                final profileUrl = member.profileUrl;
                 if (profileUrl != null) {
                   return FadeInImage.memoryNetwork(
                     image: profileUrl,
@@ -49,7 +49,7 @@ class CastMemberListItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8),
               child: Text(
-                person.name,
+                member.name,
                 style: Theme.of(context)
                     .textTheme
                     .titleSmall

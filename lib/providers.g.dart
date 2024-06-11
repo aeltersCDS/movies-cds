@@ -66,6 +66,21 @@ final getTopRatedMoviesProvider = Provider<GetTopRatedMovies>.internal(
 );
 
 typedef GetTopRatedMoviesRef = ProviderRef<GetTopRatedMovies>;
+String _$getMovieCreditsHash() => r'55f5ff892716bce2a5f450ae180045b582353813';
+
+/// See also [getMovieCredits].
+@ProviderFor(getMovieCredits)
+final getMovieCreditsProvider = Provider<GetMovieCredits>.internal(
+  getMovieCredits,
+  name: r'getMovieCreditsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getMovieCreditsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetMovieCreditsRef = ProviderRef<GetMovieCredits>;
 String _$getTrendingPeopleHash() => r'8a583b8a6790f02b6026e369bdc485cd7d25178d';
 
 /// See also [getTrendingPeople].

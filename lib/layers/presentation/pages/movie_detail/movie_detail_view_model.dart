@@ -18,7 +18,7 @@ class MovieDetailViewModel extends _$MovieDetailViewModel {
   }
 
   void _loadCast(int movieId) async {
-    final cast = await ref.read(movieRepositoryProvider).getMovieCast(movieId);
-    state = state.copyWith(cast: cast);
+    final credits = await ref.read(getMovieCreditsProvider)(movieId);
+    state = state.copyWith(credits: credits);
   }
 }

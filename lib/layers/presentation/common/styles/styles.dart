@@ -37,6 +37,9 @@ class AppTheme {
     overlayColor: WidgetStatePropertyAll(_darkGrey),
   );
 
+  static final _textButtonTheme =
+      TextButtonThemeData(style: TextButton.styleFrom(foregroundColor: _green));
+
   static ThemeData light = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
@@ -51,6 +54,7 @@ class AppTheme {
     navigationBarTheme: _navigationBarTheme,
     appBarTheme: _appBarTheme,
     tabBarTheme: _tabBarTheme,
+    textButtonTheme: _textButtonTheme,
     cardTheme: const CardTheme(color: _lightGray),
   );
 
