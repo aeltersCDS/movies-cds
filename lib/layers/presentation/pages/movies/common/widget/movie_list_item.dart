@@ -63,7 +63,9 @@ class MovieListItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      _format.format(movie.releaseDate),
+                      movie.releaseDate != null
+                          ? _format.format(movie.releaseDate!)
+                          : "",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(height: 4),

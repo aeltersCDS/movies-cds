@@ -76,7 +76,7 @@ class _MovieDetailPageState extends ConsumerState<MovieDetailPage> {
                       ),
                     ),
                     IconButton(
-                      onPressed: _goToMovieInfo,
+                      onPressed: () => _goToMovieInfo(movie),
                       icon: const Icon(Icons.info_outline),
                       color: colorScheme.secondary,
                     ),
@@ -162,10 +162,19 @@ class _MovieDetailPageState extends ConsumerState<MovieDetailPage> {
     );
   }
 
-  void _goToMovieInfo() {}
+  void _goToMovieInfo(Movie? movie) {
+    if (movie != null) {
+      context.pushNamed(
+        "movie_facts",
+        extra: movie,
+      );
+    }
+  }
 
   void _goToMovieCastCrew(Movie movie, MovieCredits credits) {
-    context.pushNamed("movie_cast_crew",
-        extra: MovieCastCrewData(movie: movie, credits: credits));
+    context.pushNamed(
+      "movie_cast_crew",
+      extra: MovieCastCrewData(movie: movie, credits: credits),
+    );
   }
 }

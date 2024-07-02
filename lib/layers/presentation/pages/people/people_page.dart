@@ -34,6 +34,7 @@ class _PeoplePageState extends ConsumerState<PeoplePage> {
       children: [
         AppBar(
           title: const Text("People"),
+          centerTitle: true,
         ),
         Expanded(
           child: Builder(

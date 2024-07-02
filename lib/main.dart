@@ -6,6 +6,7 @@ import 'package:movies_cds/layers/presentation/app_root.dart';
 import 'package:movies_cds/layers/presentation/common/styles/styles.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_cast_crew/movie_cast_crew_page.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_detail/movie_detail_page.dart';
+import 'package:movies_cds/layers/presentation/pages/movie_facts/movie_facts_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -15,8 +16,7 @@ final _router = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
-      name:
-          'home', // Optional, add name to your routes. Allows you navigate by name instead of path
+      name: 'home',
       path: '/',
       builder: (context, state) => const AppRoot(),
     ),
@@ -29,8 +29,16 @@ final _router = GoRouter(
       },
     ),
     GoRoute(
+      name: 'movie_facts',
+      path: '/movie_detail/facts',
+      builder: (context, state) {
+        final movie = state.extra as Movie;
+        return MovieFactsPage(movie: movie);
+      },
+    ),
+    GoRoute(
       name: 'movie_cast_crew',
-      path: '/movie_cast_crew',
+      path: '/movie_detail/cast_crew',
       builder: (context, state) {
         final data = state.extra as MovieCastCrewData;
         return MovieCastCrewPage(data: data);

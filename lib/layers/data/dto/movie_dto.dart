@@ -30,6 +30,11 @@ class MovieDto {
   DateTime? firstAirDate;
   double voteAverage;
   int voteCount;
+  String? status;
+  String? originalLanguage;
+  int? runtime;
+  int? budget;
+  int? revenue;
 
   factory MovieDto.fromJson(Map<String, dynamic> json) =>
       _$MovieDtoFromJson(json);
@@ -46,5 +51,10 @@ class MovieDto {
         releaseDate: releaseDate ?? firstAirDate ?? DateTime.now(),
         voteAverage: voteAverage,
         voteCount: voteCount,
+        status: status,
+        originalLanguage: originalLanguage,
+        runtime: runtime,
+        budget: budget,
+        revenue: revenue,
       );
 }

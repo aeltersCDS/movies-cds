@@ -10,6 +10,11 @@ class Movie with EquatableMixin {
     required this.releaseDate,
     required this.voteAverage,
     required this.voteCount,
+    required this.status,
+    required this.originalLanguage,
+    required this.runtime,
+    required this.budget,
+    required this.revenue,
   });
 
   int id;
@@ -17,9 +22,14 @@ class Movie with EquatableMixin {
   String overview;
   double popularity;
   String? posterUrl;
-  DateTime releaseDate;
+  DateTime? releaseDate;
   double voteAverage;
   int voteCount;
+  String? status;
+  String? originalLanguage;
+  int? runtime;
+  int? budget;
+  int? revenue;
 
   @override
   List<Object?> get props => [

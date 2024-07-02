@@ -19,7 +19,12 @@ MovieDto _$MovieDtoFromJson(Map<String, dynamic> json) => MovieDto(
     )
       ..name = json['name'] as String?
       ..firstAirDate = _$JsonConverterFromJson<String, DateTime>(
-          json['first_air_date'], const ApiDateConverter().fromJson);
+          json['first_air_date'], const ApiDateConverter().fromJson)
+      ..status = json['status'] as String?
+      ..originalLanguage = json['original_language'] as String?
+      ..runtime = (json['runtime'] as num?)?.toInt()
+      ..budget = (json['budget'] as num?)?.toInt()
+      ..revenue = (json['revenue'] as num?)?.toInt();
 
 Map<String, dynamic> _$MovieDtoToJson(MovieDto instance) {
   final val = <String, dynamic>{
@@ -47,6 +52,11 @@ Map<String, dynamic> _$MovieDtoToJson(MovieDto instance) {
           instance.firstAirDate, const ApiDateConverter().toJson));
   val['vote_average'] = instance.voteAverage;
   val['vote_count'] = instance.voteCount;
+  writeNotNull('status', instance.status);
+  writeNotNull('original_language', instance.originalLanguage);
+  writeNotNull('runtime', instance.runtime);
+  writeNotNull('budget', instance.budget);
+  writeNotNull('revenue', instance.revenue);
   return val;
 }
 

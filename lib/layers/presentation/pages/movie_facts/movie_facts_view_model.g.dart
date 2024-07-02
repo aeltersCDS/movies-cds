@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'movie_detail_view_model.dart';
+part of 'movie_facts_view_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$movieDetailViewModelHash() =>
-    r'0fc2d6ff4fd2b7f8fcc82d4cce055020634c15b6';
+String _$movieFactsViewModelHash() =>
+    r'2497161ca82d43c5bdd2b21e231af8121b9c183b';
 
-/// See also [MovieDetailViewModel].
-@ProviderFor(MovieDetailViewModel)
-final movieDetailViewModelProvider = AutoDisposeNotifierProvider<
-    MovieDetailViewModel, MovieDetailPageState>.internal(
-  MovieDetailViewModel.new,
-  name: r'movieDetailViewModelProvider',
+/// See also [MovieFactsViewModel].
+@ProviderFor(MovieFactsViewModel)
+final movieFactsViewModelProvider = AutoDisposeNotifierProvider<
+    MovieFactsViewModel, MovieFactsPageState>.internal(
+  MovieFactsViewModel.new,
+  name: r'movieFactsViewModelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$movieDetailViewModelHash,
+      : _$movieFactsViewModelHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$MovieDetailViewModel = AutoDisposeNotifier<MovieDetailPageState>;
+typedef _$MovieFactsViewModel = AutoDisposeNotifier<MovieFactsPageState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

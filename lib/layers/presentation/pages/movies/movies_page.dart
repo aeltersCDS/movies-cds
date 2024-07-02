@@ -31,6 +31,7 @@ class _MoviesPageState extends State<MoviesPage>
       children: [
         AppBar(
           title: const Text("Movies"),
+          centerTitle: true,
         ),
         Container(
           color: Theme.of(context).colorScheme.primary,

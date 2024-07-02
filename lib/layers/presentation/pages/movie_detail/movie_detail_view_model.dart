@@ -14,11 +14,14 @@ class MovieDetailViewModel extends _$MovieDetailViewModel {
 
   void initWithMovie(Movie movie) {
     state = state.copyWith(movie: movie);
-    _loadCast(movie.id);
+    _loadDetails(movie.id);
   }
 
-  void _loadCast(int movieId) async {
-    final credits = await ref.read(getMovieCreditsProvider)(movieId);
-    state = state.copyWith(credits: credits);
+  void _loadDetails(int movieId) async {
+    final details = await ref.read(getMovieDetailsProvider)(movieId);
+    state = state.copyWith(
+      movie: details.movie,
+      credits: details.credits,
+    );
   }
 }
