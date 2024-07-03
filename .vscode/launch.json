@@ -7,7 +7,8 @@
         {
             "name": "movies_cds",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "flutterMode": "debug"
         },
         {
             "name": "movies_cds (profile mode)",

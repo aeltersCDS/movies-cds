@@ -26,6 +26,7 @@ class PersonDto {
   int gender;
   String? knownForDepartment;
   String? profilePath;
+  String? biography;
   List<MovieDto>? knownFor;
 
   factory PersonDto.fromJson(Map<String, dynamic> json) =>
@@ -41,6 +42,7 @@ class PersonDto {
         knownForDepartment: knownForDepartment,
         profileUrl:
             profilePath != null ? "${Api.imagesBaseUrl}$profilePath" : null,
+        biography: biography,
         knownFor: knownFor?.map((movie) => movie.toDomain()).toList(),
       );
 }

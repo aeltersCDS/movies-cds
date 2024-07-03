@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movies_cds/layers/domain/model/person.dart';
 import 'package:movies_cds/layers/presentation/common/page_status.dart';
 import 'package:movies_cds/layers/presentation/common/widget/list_loading_item.dart';
 import 'package:movies_cds/layers/presentation/pages/people/people_view_model.dart';
 import 'package:movies_cds/layers/presentation/pages/people/widget/person_list_item.dart';
+import 'package:go_router/go_router.dart';
 
 class PeoplePage extends ConsumerStatefulWidget {
   const PeoplePage({super.key});
@@ -54,7 +56,9 @@ class _PeoplePageState extends ConsumerState<PeoplePage> {
                           ? const ListLoadingItem()
                           : const SizedBox();
                     }
-                    return PersonListItem(person: list[index]);
+                    final person = list[index];
+                    return PersonListItem(
+                        person: person, onTap: () => _goToPersonDetail(person));
                   },
                 );
               }
@@ -76,5 +80,12 @@ class _PeoplePageState extends ConsumerState<PeoplePage> {
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
     return currentScroll >= (maxScroll * 0.9);
+  }
+
+  void _goToPersonDetail(Person person) {
+    context.pushNamed(
+      "person_detail",
+      extra: person,
+    );
   }
 }

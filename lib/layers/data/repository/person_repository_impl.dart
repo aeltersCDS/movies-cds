@@ -12,4 +12,10 @@ class PersonRepositoryImpl implements PersonRepository {
     final people = await _api.loadTrendingPeople(page: page);
     return people.map((person) => person.toDomain()).toList();
   }
+
+  @override
+  Future<Person> getPersonDetails(int personId) async {
+    final person = await _api.loadPersonDetails(personId);
+    return person.toDomain();
+  }
 }

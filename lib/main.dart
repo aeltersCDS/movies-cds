@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movies_cds/layers/domain/model/movie.dart';
+import 'package:movies_cds/layers/domain/model/person.dart';
 import 'package:movies_cds/layers/presentation/app_root.dart';
 import 'package:movies_cds/layers/presentation/common/styles/styles.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_cast_crew/movie_cast_crew_page.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_detail/movie_detail_page.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_facts/movie_facts_page.dart';
+import 'package:movies_cds/layers/presentation/pages/person_detail/person_detail_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -42,6 +44,14 @@ final _router = GoRouter(
       builder: (context, state) {
         final data = state.extra as MovieCastCrewData;
         return MovieCastCrewPage(data: data);
+      },
+    ),
+    GoRoute(
+      name: 'person_detail',
+      path: '/person_detail',
+      builder: (context, state) {
+        final person = state.extra as Person;
+        return PersonDetailPage(person: person);
       },
     ),
   ],

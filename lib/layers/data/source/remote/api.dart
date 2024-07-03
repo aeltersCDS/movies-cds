@@ -11,6 +11,7 @@ abstract class Api {
   Future<List<PersonDto>> loadTrendingPeople({int page = 0});
   Future<MovieCreditsDto> loadMovieCredits(int movieId);
   Future<MovieDto> loadMovieDetails(int movieId);
+  Future<PersonDto> loadPersonDetails(int personId);
   static const imagesBaseUrl = "https://image.tmdb.org/t/p/original/";
 }
 
@@ -132,6 +133,28 @@ class ApiImpl implements Api {
           await _dio.get('movie/$movieId');
       final movie = MovieDto.fromJson(response.data!);
       return movie;
+    } on DioException catch (e) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx and is also not 304.
+      if (e.response != null) {
+        print(e.response?.data);
+        print(e.response?.headers);
+        print(e.response?.requestOptions);
+      } else {
+        // Something happened in setting up or sending the request that triggered an Error
+        print(e);
+      }
+      rethrow;
+    }
+  }
+
+  @override
+  Future<PersonDto> loadPersonDetails(int personId) async {
+    try {
+      final Response<Map<String, dynamic>> response =
+          await _dio.get('person/$personId');
+      final person = PersonDto.fromJson(response.data!);
+      return person;
     } on DioException catch (e) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx and is also not 304.

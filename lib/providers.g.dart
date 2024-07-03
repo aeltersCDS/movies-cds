@@ -96,6 +96,21 @@ final getTrendingPeopleProvider = Provider<GetTrendingPeople>.internal(
 );
 
 typedef GetTrendingPeopleRef = ProviderRef<GetTrendingPeople>;
+String _$getPersonDetailsHash() => r'6fe492349d9b41f447b33d5a26c9b9f98d4ac8b0';
+
+/// See also [getPersonDetails].
+@ProviderFor(getPersonDetails)
+final getPersonDetailsProvider = Provider<GetPersonDetails>.internal(
+  getPersonDetails,
+  name: r'getPersonDetailsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getPersonDetailsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetPersonDetailsRef = ProviderRef<GetPersonDetails>;
 String _$moviesRestInterceptorHash() =>
     r'da0ab87d361d44be1310a570bafa1883f727f1dd';
 

@@ -9,7 +9,6 @@ class GetPopularMovies {
   final MovieRepository _repository;
 
   Future<List<Movie>> call({int page = 0}) async {
-    final list = await _repository.getPopularMovies(page: page);
-    return list;
+    return await _repository.getPopularMovies(page: page);
   }
 }

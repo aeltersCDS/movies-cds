@@ -7,6 +7,7 @@ import 'package:movies_cds/layers/data/source/remote/request_interceptor.dart';
 import 'package:movies_cds/layers/domain/repository/movie_repository.dart';
 import 'package:movies_cds/layers/domain/repository/person_repository.dart';
 import 'package:movies_cds/layers/domain/usecase/get_movie_details.dart';
+import 'package:movies_cds/layers/domain/usecase/get_person_details.dart';
 import 'package:movies_cds/layers/domain/usecase/get_popular_movies.dart';
 import 'package:movies_cds/layers/domain/usecase/get_top_rated_movies.dart';
 import 'package:movies_cds/layers/domain/usecase/get_trending_people.dart';
@@ -56,6 +57,11 @@ GetMovieDetails getMovieDetails(GetMovieDetailsRef ref) => GetMovieDetails(
 @Riverpod(keepAlive: true)
 GetTrendingPeople getTrendingPeople(GetTrendingPeopleRef ref) =>
     GetTrendingPeople(
+      repository: ref.read(personRepositoryProvider),
+    );
+
+@Riverpod(keepAlive: true)
+GetPersonDetails getPersonDetails(GetPersonDetailsRef ref) => GetPersonDetails(
       repository: ref.read(personRepositoryProvider),
     );
 
