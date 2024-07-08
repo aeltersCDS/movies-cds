@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movies_cds/layers/domain/model/person.dart';
 import 'package:movies_cds/layers/presentation/common/page_status.dart';
+import 'package:movies_cds/layers/presentation/common/widget/error_page.dart';
 import 'package:movies_cds/layers/presentation/common/widget/list_loading_item.dart';
 import 'package:movies_cds/layers/presentation/pages/people/people_view_model.dart';
 import 'package:movies_cds/layers/presentation/pages/people/widget/person_list_item.dart';
@@ -20,7 +21,7 @@ class _PeoplePageState extends ConsumerState<PeoplePage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(peopleViewModelProvider.notifier).fetchNextPage();
+      _fetchNextPage();
     });
     _scrollController.addListener(_onScroll);
     super.initState();
@@ -41,7 +42,11 @@ class _PeoplePageState extends ConsumerState<PeoplePage> {
         Expanded(
           child: Builder(
             builder: (context) {
-              if (status == PageStatus.initial || list.isEmpty) {
+              if (status == PageStatus.failure) {
+                return ErrorPage(
+                  onButtonTap: _fetchNextPage,
+                );
+              } else if (status == PageStatus.loading && list.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 return ListView.separated(
@@ -67,6 +72,10 @@ class _PeoplePageState extends ConsumerState<PeoplePage> {
         ),
       ],
     );
+  }
+
+  void _fetchNextPage() {
+    ref.read(peopleViewModelProvider.notifier).fetchNextPage();
   }
 
   void _onScroll() {

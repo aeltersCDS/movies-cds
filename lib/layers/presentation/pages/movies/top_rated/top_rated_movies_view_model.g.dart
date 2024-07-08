@@ -7,7 +7,7 @@ part of 'top_rated_movies_view_model.dart';
 // **************************************************************************
 
 String _$topRatedMoviesViewModelHash() =>
-    r'dc4d4e415d44f70cb1a03afb471a9ac91825f7ed';
+    r'92042db24694cb89e1e5c78b3d109f95c82b9d1b';
 
 /// See also [TopRatedMoviesViewModel].
 @ProviderFor(TopRatedMoviesViewModel)

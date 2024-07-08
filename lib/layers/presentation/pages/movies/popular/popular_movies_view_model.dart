@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:movies_cds/layers/presentation/common/page_status.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/common/movies_page_state.dart';
 import 'package:movies_cds/providers.dart';
@@ -25,9 +25,11 @@ class PopularMoviesViewModel extends _$PopularMoviesViewModel {
         movies: List.of(state.movies)..addAll(page),
         hasReachedEnd: page.isEmpty,
       );
-    } catch (exc) {
-      debugPrint("Error");
-      state = state.copyWith(status: PageStatus.failure);
+    } catch (exc, stack) {
+      Logger().e(exc, stackTrace: stack);
+      if (state.currentPage == 1) {
+        state = state.copyWith(status: PageStatus.failure);
+      }
     }
   }
 }

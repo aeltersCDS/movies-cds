@@ -31,18 +31,16 @@ class CastMemberHorizontalListItem extends StatelessWidget {
                   return FadeInImage.memoryNetwork(
                     image: profileUrl,
                     placeholder: kTransparentImage,
+                    imageErrorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      return _errorImage(context);
+                    },
                     height: 144,
                     width: 120,
                     fit: BoxFit.cover,
                   );
                 } else {
-                  return Container(
-                    color: Theme.of(context).colorScheme.primary.withAlpha(100),
-                    child: const SizedBox(
-                      height: 144,
-                      width: 120,
-                    ),
-                  );
+                  return _errorImage(context);
                 }
               }),
             ),
@@ -60,6 +58,16 @@ class CastMemberHorizontalListItem extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _errorImage(BuildContext context) {
+    return Container(
+      color: Theme.of(context).colorScheme.primary.withAlpha(100),
+      child: const SizedBox(
+        height: 144,
+        width: 120,
       ),
     );
   }

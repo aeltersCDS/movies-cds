@@ -27,7 +27,9 @@ class PeopleViewModel extends _$PeopleViewModel {
       );
     } catch (exc, stack) {
       Logger().e(exc, stackTrace: stack);
-      state = state.copyWith(status: PageStatus.failure);
+      if (state.currentPage == 1) {
+        state = state.copyWith(status: PageStatus.failure);
+      }
     }
   }
 }

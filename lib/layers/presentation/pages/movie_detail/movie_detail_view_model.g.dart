@@ -7,7 +7,7 @@ part of 'movie_detail_view_model.dart';
 // **************************************************************************
 
 String _$movieDetailViewModelHash() =>
-    r'0fc2d6ff4fd2b7f8fcc82d4cce055020634c15b6';
+    r'491d4d023ed23a9218bd0e54a472ad509838063e';
 
 /// See also [MovieDetailViewModel].
 @ProviderFor(MovieDetailViewModel)

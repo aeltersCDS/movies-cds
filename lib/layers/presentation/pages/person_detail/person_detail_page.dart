@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movies_cds/layers/domain/model/person.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movies_cds/layers/presentation/common/page_status.dart';
+import 'package:movies_cds/layers/presentation/common/widget/dialog.dart';
 import 'package:movies_cds/layers/presentation/pages/person_detail/person_detail_view_model.dart';
 import 'package:movies_cds/layers/presentation/pages/person_detail/widget/movie_horizontal_list_item.dart';
 
@@ -27,12 +29,24 @@ class _PersonDetailPageState extends ConsumerState<PersonDetailPage> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(personDetailViewModelProvider);
+    final status = state.status;
     final person = state.person;
     final knownFor = person?.knownFor ?? [];
     final biography = person?.biography;
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     const horizontalPadding = EdgeInsets.fromLTRB(16, 0, 16, 0);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (status == PageStatus.failure) {
+        tmdbErrorDialog(
+          context: context,
+          onButtonTap: () {
+            ref.read(personDetailViewModelProvider.notifier).hideErrorDialog();
+          },
+        );
+      }
+    });
     return Container(
       color: colorScheme.surface,
       child: NestedScrollView(

@@ -1,4 +1,6 @@
+import 'package:logger/logger.dart';
 import 'package:movies_cds/layers/domain/model/movie.dart';
+import 'package:movies_cds/layers/presentation/common/page_status.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_detail/movie_detail_page_state.dart';
 import 'package:movies_cds/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -17,11 +19,22 @@ class MovieDetailViewModel extends _$MovieDetailViewModel {
     _loadDetails(movie.id);
   }
 
+  void hideErrorDialog() {
+    state = state.copyWith(status: PageStatus.success);
+  }
+
   void _loadDetails(int movieId) async {
-    final details = await ref.read(getMovieDetailsProvider)(movieId);
-    state = state.copyWith(
-      movie: details.movie,
-      credits: details.credits,
-    );
+    state = state.copyWith(status: PageStatus.loading);
+    try {
+      final details = await ref.read(getMovieDetailsProvider)(movieId);
+      state = state.copyWith(
+        status: PageStatus.success,
+        movie: details.movie,
+        credits: details.credits,
+      );
+    } catch (exc, stack) {
+      Logger().e(exc, stackTrace: stack);
+      state = state.copyWith(status: PageStatus.failure);
+    }
   }
 }

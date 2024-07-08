@@ -7,7 +7,7 @@ part of 'popular_movies_view_model.dart';
 // **************************************************************************
 
 String _$popularMoviesViewModelHash() =>
-    r'b782fbfa8ce971b2caadcc3f1d5042a6aad1cf5f';
+    r'797e02e9f2478a58d46014f1136bef694cacdbaf';
 
 /// See also [PopularMoviesViewModel].
 @ProviderFor(PopularMoviesViewModel)
