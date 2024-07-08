@@ -8,6 +8,7 @@ import 'package:movies_cds/layers/presentation/common/widget/dialog.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_cast_crew/movie_cast_crew_page.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_detail/movie_detail_view_model.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_detail/widget/cast_member_horizontal_list_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MovieDetailPage extends ConsumerStatefulWidget {
   const MovieDetailPage({required this.movie, super.key});
@@ -30,6 +31,7 @@ class _MovieDetailPageState extends ConsumerState<MovieDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context)!;
     final state = ref.watch(movieDetailViewModelProvider);
     final status = state.status;
     final movie = state.movie;
@@ -102,7 +104,7 @@ class _MovieDetailPageState extends ConsumerState<MovieDetailPage> {
               Padding(
                 padding: horizontalPadding,
                 child: Text(
-                  "User Score",
+                  localizations.userScore,
                   style: textTheme.titleSmall
                       ?.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -119,7 +121,7 @@ class _MovieDetailPageState extends ConsumerState<MovieDetailPage> {
               Padding(
                 padding: horizontalPadding,
                 child: Text(
-                  "Overview",
+                  localizations.overview,
                   style: textTheme.titleSmall
                       ?.copyWith(fontWeight: FontWeight.bold),
                 ),
@@ -142,7 +144,7 @@ class _MovieDetailPageState extends ConsumerState<MovieDetailPage> {
                     Padding(
                       padding: horizontalPadding,
                       child: Text(
-                        "Top Billed Cast",
+                        localizations.topBilledCast,
                         style: textTheme.titleMedium
                             ?.copyWith(fontWeight: FontWeight.bold),
                       ),
@@ -166,7 +168,7 @@ class _MovieDetailPageState extends ConsumerState<MovieDetailPage> {
                       padding: const EdgeInsets.fromLTRB(4, 0, 4, 0),
                       child: TextButton(
                         onPressed: () => _goToMovieCastCrew(movie, credits),
-                        child: const Text("View Full Cast & Crew"),
+                        child: Text(localizations.viewFullCastAndCrew),
                       ),
                     )
                   ],

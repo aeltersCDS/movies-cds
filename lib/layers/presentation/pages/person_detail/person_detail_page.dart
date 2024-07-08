@@ -6,6 +6,7 @@ import 'package:movies_cds/layers/presentation/common/page_status.dart';
 import 'package:movies_cds/layers/presentation/common/widget/dialog.dart';
 import 'package:movies_cds/layers/presentation/pages/person_detail/person_detail_view_model.dart';
 import 'package:movies_cds/layers/presentation/pages/person_detail/widget/movie_horizontal_list_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PersonDetailPage extends ConsumerStatefulWidget {
   const PersonDetailPage({super.key, required this.person});
@@ -28,6 +29,7 @@ class _PersonDetailPageState extends ConsumerState<PersonDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context)!;
     final state = ref.watch(personDetailViewModelProvider);
     final status = state.status;
     final person = state.person;
@@ -106,7 +108,7 @@ class _PersonDetailPageState extends ConsumerState<PersonDetailPage> {
                       Padding(
                         padding: horizontalPadding,
                         child: Text(
-                          "Known for",
+                          localizations.knownFor,
                           style: textTheme.titleSmall
                               ?.copyWith(fontWeight: FontWeight.bold),
                         ),
@@ -134,14 +136,16 @@ class _PersonDetailPageState extends ConsumerState<PersonDetailPage> {
               ),
               Builder(
                 builder: (context) {
-                  if (biography == null) return const SizedBox();
+                  if (biography == null || biography.isEmpty) {
+                    return const SizedBox();
+                  }
                   return Padding(
                     padding: horizontalPadding,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Biography",
+                          localizations.biography,
                           style: textTheme.titleSmall
                               ?.copyWith(fontWeight: FontWeight.bold),
                         ),

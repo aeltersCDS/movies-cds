@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/movies_page.dart';
 import 'package:movies_cds/layers/presentation/pages/people/people_page.dart';
 import 'package:movies_cds/layers/presentation/pages/settings/view/settings_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppRoot extends StatefulWidget {
   const AppRoot({super.key});
@@ -15,6 +16,7 @@ class _AppRootState extends State<AppRoot> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context)!;
     return Scaffold(
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
@@ -23,18 +25,18 @@ class _AppRootState extends State<AppRoot> {
           });
         },
         selectedIndex: _selectedIndex,
-        destinations: const <Widget>[
+        destinations: <Widget>[
           NavigationDestination(
-            icon: Icon(Icons.movie),
-            label: 'Movies',
+            icon: const Icon(Icons.movie),
+            label: localizations.movies,
           ),
           NavigationDestination(
-            icon: Icon(Icons.people),
-            label: 'People',
+            icon: const Icon(Icons.people),
+            label: localizations.people,
           ),
           NavigationDestination(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: const Icon(Icons.settings),
+            label: localizations.settings,
           ),
         ],
       ),

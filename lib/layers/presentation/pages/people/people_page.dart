@@ -7,6 +7,7 @@ import 'package:movies_cds/layers/presentation/common/widget/list_loading_item.d
 import 'package:movies_cds/layers/presentation/pages/people/people_view_model.dart';
 import 'package:movies_cds/layers/presentation/pages/people/widget/person_list_item.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PeoplePage extends ConsumerStatefulWidget {
   const PeoplePage({super.key});
@@ -29,6 +30,7 @@ class _PeoplePageState extends ConsumerState<PeoplePage> {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context)!;
     final state = ref.watch(peopleViewModelProvider);
     final list = state.people;
     final status = state.status;
@@ -36,7 +38,7 @@ class _PeoplePageState extends ConsumerState<PeoplePage> {
     return Column(
       children: [
         AppBar(
-          title: const Text("People"),
+          title: Text(localizations.people),
           centerTitle: true,
         ),
         Expanded(

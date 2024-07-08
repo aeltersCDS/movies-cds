@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> tmdbDialog({
   required BuildContext context,
@@ -48,17 +49,21 @@ Future<void> tmdbDialog({
 
 Future<void> tmdbErrorDialog({
   required BuildContext context,
-  String title = "Error",
-  String message = "Something went wrong, please try again.",
-  String buttonText = "Ok",
+  String? title,
+  String? message,
+  String? buttonText,
   required void Function() onButtonTap,
 }) {
+  final AppLocalizations localizations = AppLocalizations.of(context)!;
+  final errorTitle = title ?? localizations.generalErrorTitle;
+  final errorMessage = title ?? localizations.generalErrorMessage;
+  final errorButton = buttonText ?? localizations.ok;
   return tmdbDialog(
     context: context,
-    title: title,
-    message: message,
+    title: errorTitle,
+    message: errorMessage,
     positiveButton: DialogButton(
-      text: buttonText,
+      text: errorButton,
       onTap: onButtonTap,
     ),
   );

@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:movies_cds/env/env.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MoviesRestInterceptor extends Interceptor {
   final Logger _logger;
@@ -11,6 +14,12 @@ class MoviesRestInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     _logger.d('REQUEST[${options.method}] => PATH: ${options.path}');
     options.headers["Authorization"] = "Bearer ${Env.tmdbApiKey}";
+    final currentLanguage = PlatformDispatcher.instance.locale.languageCode;
+    final supportedLanguages =
+        AppLocalizations.supportedLocales.map((locale) => locale.languageCode);
+    if (supportedLanguages.contains(currentLanguage)) {
+      options.queryParameters["language"] = currentLanguage;
+    }
     super.onRequest(options, handler);
   }
 

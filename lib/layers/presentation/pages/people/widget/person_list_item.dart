@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_cds/layers/domain/model/person.dart';
 import 'package:movies_cds/layers/presentation/common/corner_clipper.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PersonListItem extends StatelessWidget {
   const PersonListItem({super.key, required this.person, required this.onTap});
@@ -10,6 +11,7 @@ class PersonListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => onTap(),
       child: Card(
@@ -73,9 +75,10 @@ class PersonListItem extends StatelessWidget {
                                       .onSurface
                                       .withAlpha(200)),
                           children: [
-                            const TextSpan(
-                                text: "Known for: ",
-                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(
+                                text: "${localizations.knownFor}: ",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
                             TextSpan(
                               text: person.knownFor
                                       ?.map((movie) => movie.title)

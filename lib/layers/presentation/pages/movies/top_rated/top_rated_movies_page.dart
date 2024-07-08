@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movies_cds/layers/domain/model/movie.dart';
-import 'package:movies_cds/layers/presentation/common/page_status.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/common/widget/movie_list_page.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/top_rated/top_rated_movies_view_model.dart';
-import 'package:movies_cds/layers/presentation/common/widget/list_loading_item.dart';
-import 'package:movies_cds/layers/presentation/pages/movies/common/widget/movie_list_item.dart';
 
 class TopRatedMoviesPage extends ConsumerStatefulWidget {
   const TopRatedMoviesPage({super.key});

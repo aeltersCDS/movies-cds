@@ -23,7 +23,13 @@ class ApiImpl implements Api {
   @override
   Future<List<MovieDto>> loadPopularMovies({int page = 0}) async {
     final Response<Map<String, dynamic>> response = await _dio.get(
-        'discover/movie?include_video=false&language=en-US&page=$page&sort_by=popularity.desc');
+      'discover/movie',
+      queryParameters: {
+        "include_video": false,
+        "page": page,
+        "sort_by": "popularity.desc"
+      },
+    );
     final list = (response.data!['results'] as List<dynamic>)
         .map((e) => MovieDto.fromJson(e))
         .toList();
@@ -32,8 +38,13 @@ class ApiImpl implements Api {
 
   @override
   Future<List<MovieDto>> loadTopRatedMovies({int page = 0}) async {
-    final Response<Map<String, dynamic>> response = await _dio
-        .get('movie/top_rated?include_video=false&language=en-US&page=$page');
+    final Response<Map<String, dynamic>> response = await _dio.get(
+      'movie/top_rated',
+      queryParameters: {
+        "include_video": false,
+        "page": page,
+      },
+    );
     final list = (response.data!['results'] as List<dynamic>)
         .map((e) => MovieDto.fromJson(e))
         .toList();
@@ -42,8 +53,12 @@ class ApiImpl implements Api {
 
   @override
   Future<List<PersonDto>> loadTrendingPeople({int page = 0}) async {
-    final Response<Map<String, dynamic>> response =
-        await _dio.get('trending/person/day?language=en-US&page=$page');
+    final Response<Map<String, dynamic>> response = await _dio.get(
+      'trending/person/day',
+      queryParameters: {
+        "page": page,
+      },
+    );
     final list = (response.data!['results'] as List<dynamic>)
         .map((e) => PersonDto.fromJson(e))
         .toList();

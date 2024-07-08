@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movies_cds/layers/domain/model/movie.dart';
@@ -9,6 +10,7 @@ import 'package:movies_cds/layers/presentation/pages/movie_cast_crew/movie_cast_
 import 'package:movies_cds/layers/presentation/pages/movie_detail/movie_detail_page.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_facts/movie_facts_page.dart';
 import 'package:movies_cds/layers/presentation/pages/person_detail/person_detail_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -68,6 +70,13 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       routerConfig: _router,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 }

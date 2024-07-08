@@ -5,13 +5,16 @@ import 'package:movies_cds/layers/presentation/common/corner_clipper.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MovieListItem extends StatelessWidget {
-  MovieListItem({super.key, required this.movie, required this.onTap});
+  const MovieListItem({super.key, required this.movie, required this.onTap});
   final Movie movie;
-  final DateFormat _format = DateFormat("MMMM d, yyyy");
   final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
+    final DateFormat dateFormat = DateFormat(
+      "MMMM d, yyyy",
+      Localizations.localeOf(context).languageCode,
+    );
     return GestureDetector(
       onTap: () => onTap(),
       child: Card(
@@ -64,7 +67,8 @@ class MovieListItem extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       movie.releaseDate != null
-                          ? _format.format(movie.releaseDate!)
+                          ? toBeginningOfSentenceCase(
+                              dateFormat.format(movie.releaseDate!))
                           : "",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),

@@ -5,6 +5,7 @@ import 'package:movies_cds/layers/domain/model/movie_credits.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_cast_crew/movie_cast_crew_view_model.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_cast_crew/widget/cast_tab.dart';
 import 'package:movies_cds/layers/presentation/pages/movie_cast_crew/widget/crew_tab.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MovieCastCrewData {
   MovieCastCrewData({
@@ -47,6 +48,7 @@ class _MovieCastCrewPageState extends ConsumerState<MovieCastCrewPage>
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context)!;
     final state = ref.watch(movieCastCrewViewModelProvider);
     final title = state.title;
     final cast = state.cast;
@@ -61,9 +63,9 @@ class _MovieCastCrewPageState extends ConsumerState<MovieCastCrewPage>
             color: Theme.of(context).colorScheme.primary,
             child: TabBar(
               controller: _tabController,
-              tabs: const [
-                Tab(text: "Cast"),
-                Tab(text: "Crew"),
+              tabs: [
+                Tab(text: localizations.cast),
+                Tab(text: localizations.crew),
               ],
             ),
           ),

@@ -1,20 +1,43 @@
 import 'package:equatable/equatable.dart';
 
 class MovieFactsPageState extends Equatable {
-  const MovieFactsPageState({this.facts});
+  const MovieFactsPageState({
+    this.status,
+    this.releaseDate,
+    this.originalLanguage,
+    this.runtime,
+    this.budget,
+    this.revenue,
+  });
 
-  final List<MovieFact>? facts;
+  final String? status;
+  final DateTime? releaseDate;
+  final String? originalLanguage;
+  final int? runtime;
+  final int? budget;
+  final int? revenue;
 
   MovieFactsPageState copyWith({
-    List<MovieFact>? facts,
+    String? status,
+    DateTime? releaseDate,
+    String? originalLanguage,
+    int? runtime,
+    int? budget,
+    int? revenue,
   }) {
     return MovieFactsPageState(
-      facts: facts ?? this.facts,
+      status: status ?? this.status,
+      releaseDate: releaseDate ?? this.releaseDate,
+      originalLanguage: originalLanguage ?? this.originalLanguage,
+      runtime: runtime ?? this.runtime,
+      budget: budget ?? this.budget,
+      revenue: revenue ?? this.revenue,
     );
   }
 
   @override
-  List<Object?> get props => [facts];
+  List<Object?> get props =>
+      [status, releaseDate, originalLanguage, runtime, budget, revenue];
 }
 
 class MovieFact extends Equatable {

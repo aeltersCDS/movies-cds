@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/popular/popular_movies_page.dart';
 import 'package:movies_cds/layers/presentation/pages/movies/top_rated/top_rated_movies_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MoviesPage extends StatefulWidget {
   const MoviesPage({super.key});
@@ -27,19 +28,20 @@ class _MoviesPageState extends State<MoviesPage>
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations localizations = AppLocalizations.of(context)!;
     return Column(
       children: [
         AppBar(
-          title: const Text("Movies"),
+          title: Text(localizations.movies),
           centerTitle: true,
         ),
         Container(
           color: Theme.of(context).colorScheme.primary,
           child: TabBar(
             controller: _tabController,
-            tabs: const [
-              Tab(text: "Popular"),
-              Tab(text: "Top Rated"),
+            tabs: [
+              Tab(text: localizations.popular),
+              Tab(text: localizations.topRated),
             ],
           ),
         ),
